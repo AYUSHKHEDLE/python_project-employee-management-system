@@ -1,0 +1,234 @@
+# --- 1. Data Storage (In-memory) ---
+
+# Global list to store all employee records
+# Each employee is a dictionary
+employees = [
+    {"id": 101, "name": "Ayush", "position": "Manager", "salary": 950000, "experience": "5 years"},
+    {"id": 102, "name": "Adinath", "position": "Developer", "salary": 75000, "experience": "1 year"},
+    {"id": 103, "name": "Raju", "position": "Developer", "salary": 95000, "experience": "1 year"}
+]
+next_id = 103 # Tracks the next available employee ID
+
+# Basic hardcoded user for login
+ADMIN_USER = "admin"
+ADMIN_PASS = "12345"
+is_logged_in = False
+
+
+# --- 2. Core Functions ---
+
+def login():
+    global is_logged_in
+    if is_logged_in:
+        print("You are already logged in.")
+        return True
+
+    print("\n--- LOGIN ---")
+    username = input("Enter username: ")
+    password = input("Enter password: ")
+
+    if username == ADMIN_USER and password == ADMIN_PASS:
+        is_logged_in = True
+        print("Login successful! Welcome.")
+        return True
+    else:
+        print("Login failed. Invalid credentials.")
+        return False
+
+def get_employee_by_id(emp_id):
+    """Utility function to find an employee dictionary by ID."""
+    for emp in employees:
+        if emp['id'] == emp_id:
+            return emp
+    return None
+
+def register_employee():
+    """ Employee Registration."""
+    global next_id
+    print("\n--- EMPLOYEE REGISTRATION ---")
+    name = input("Enter employee Name: ")
+    position = input("Enter Position: ")
+
+    # Simple input for salary and experience
+    salary = input("Enter Salary: ")
+    experience = input("Enter Work Experience (e.g., '3 years'): ")
+
+    new_employee = {
+        "id": next_id,
+        "name": name,
+        "position": position,
+        "salary": salary,
+        "experience": experience
+    }
+
+    employees.append(new_employee)
+    print(f"Employee {name} registered with ID: {next_id}")
+    next_id += 1
+
+def view_employee_details():
+    """ Employee Details."""
+    print("\n--- VIEW EMPLOYEE DETAILS ---")
+    try:
+        emp_id = int(input("Enter Employee ID: "))
+    except ValueError:
+        print("ID must be a number.")
+        return
+
+    emp = get_employee_by_id(emp_id)
+
+    if emp:
+        print(f"\n--- Details for ID {emp['id']} ---")
+        print(f"Name: {emp['name']}")
+        print(f"Position: {emp['position']}")
+        print(f"Current Salary: ${emp['salary']}")
+        print(f"Work Experience: {emp['experience']}")
+        # Add a simple performance placeholder
+        print("Performance: Needs review (Placeholder)")
+    else:
+        print(f"Error: Employee with ID {emp_id} not found.")
+
+def update_salary():
+    """ Update Salary."""
+    print("\n--- UPDATE SALARY ---")
+    try:
+        emp_id = int(input("Enter Employee ID to update salary: "))
+    except ValueError:
+        print("ID must be a number.")
+        return
+
+    emp = get_employee_by_id(emp_id)
+
+    if emp:
+        print(f"Current Salary for {emp['name']}: {emp['salary']}")
+        new_salary = input("Enter new Salary: ")
+        
+        # Update the dictionary
+        emp['salary'] = new_salary
+        print(f"Salary for {emp['name']} updated to ${new_salary}.")
+    else:
+        print(f"Error: Employee with ID {emp_id} not found.")
+
+def view_all_employees_list():
+    """ Employees List."""
+    print("\n--- EMPLOYEES LIST ---")
+    if not employees:
+        print("No employees registered.")
+        return
+
+    print(f"{'ID':<5}{'Name':<20}{'Position':<15}{'Salary':<10}")
+    print("-" * 50)
+    for emp in employees:
+        print(f"{emp['id']:<5}{emp['name']:<20}{emp['position']:<15}{emp['salary']:<10}")
+
+def count_employees():
+    """ Know the Number of Employees."""
+    print("\n--- NUMBER OF EMPLOYEES ---")
+    print(f"Total employees currently registered: {len(employees)}")
+
+def employee_balance_account():
+    """ Employee Balance Account (Simplified to show current salary)."""
+    print("\n--- EMPLOYEE BALANCE ACCOUNT ---")
+    try:
+        emp_id = int(input("Enter Employee ID to check balance: "))
+    except ValueError:
+        print("ID must be a number.")
+        return
+
+    emp = get_employee_by_id(emp_id)
+
+    if emp:
+        print(f"\n--- Balance Account for {emp['name']} ---")
+        # In a simple student project, 'Balance' usually means 'Current Salary'
+        print(f"Current Account Balance (Salary): ${emp['salary']}")
+        print("(Note: This is a static view; no transaction history is tracked here.)")
+    else:
+        print(f"Error: Employee with ID {emp_id} not found.")
+
+def view_work_experience():
+    """ Work Experience (Simplified to show the main field)."""
+    print("\n--- WORK EXPERIENCE ---")
+    try:
+        emp_id = int(input("Enter Employee ID to view work experience: "))
+    except ValueError:
+        print("ID must be a number.")
+        return
+
+    emp = get_employee_by_id(emp_id)
+
+    if emp:
+        print(f"\n--- Work Experience for {emp['name']} ---")
+        print(f"Recorded Experience: {emp['experience']}")
+        # A student might add an option to update it here
+    else:
+        print(f"Error: Employee with ID {emp_id} not found.")
+
+def know_your_salary():
+    """ Know Your Salary."""
+    print("\n--- KNOW YOUR SALARY ---")
+    try:
+        emp_id = int(input("Enter Employee ID to check salary: "))
+    except ValueError:
+        print("ID must be a number.")
+        return
+
+    emp = get_employee_by_id(emp_id)
+
+    if emp:
+        print(f"Salary for {emp['name']} is: ${emp['salary']}")
+    else:
+        print(f"Error: Employee with ID {emp_id} not found.")
+
+
+# --- 3. Main Program Loop ---
+
+def display_menu():
+    """Shows the menu to the logged-in user."""
+    print("\n--- Employee Management System Menu ---")
+    print("2. Employee Registration")
+    print("3. Employee Details (View)")
+    print("4. Update Salary")
+    print("5. Employees List")
+    print("6. Know the Number of Employees")
+    print("7. Employee Balance Account (Current Salary)")
+    print("8. Work Experience")
+    print("9. Know Your Salary")
+    print("0. Exit")
+    return input("Enter your choice (2-9, 0 to exit): ")
+
+def main():
+    """The main entry point of the application."""
+    print("Welcome to the Simple EMS.")
+    
+    # 1. Force Login first
+    while not is_logged_in:
+        if not login():
+            print("Trying again...")
+
+    # 2. Main menu loop
+    while is_logged_in:
+        choice = display_menu()
+        
+        if choice == '2':
+            register_employee()
+        elif choice == '3':
+            view_employee_details()
+        elif choice == '4':
+            update_salary()
+        elif choice == '5':
+            view_all_employees_list()
+        elif choice == '6':
+            count_employees()
+        elif choice == '7':
+            employee_balance_account()
+        elif choice == '8':
+            view_work_experience()
+        elif choice == '9':
+            know_your_salary()
+        elif choice == '0':
+            print("Exiting application. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if _name_ == "_main_":
+    main()
