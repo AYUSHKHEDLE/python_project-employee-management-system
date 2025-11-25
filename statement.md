@@ -2,21 +2,21 @@
 
 ## Problem Statement
 
-[cite_start]Many small-scale organizations still rely on decentralized methods like spreadsheets or physical files for managing employee data[cite: 191]. [cite_start]This practice often leads to data redundancy, difficulty in searching specific records, and a significant lack of security[cite: 192].
+Many small-scale organizations still rely on decentralized methods like spreadsheets or physical files for managing employee data. This practice often leads to data redundancy, difficulty in searching specific records, and a significant lack of security.
 
-[cite_start]The objective of this project is to provide a reliable, persistent, and secure software solution that streamlines fundamental employee data manipulation tasks (CRUD operations) while restricting access through a password-protected login mechanism[cite: 193, 194].
+The objective of this project is to provide a reliable, persistent, and secure software solution that streamlines fundamental employee data manipulation tasks (CRUD operations) while restricting access through a password-protected login mechanism.
 
 ---
 
 ## Scope of the Project
 
-[cite_start]The scope of this project is limited to a **database-driven console application** [cite: 137] [cite_start]that performs core administrative functions[cite: 197]. The system focuses on:
-* [cite_start]**User Authentication:** Ensuring system access is secured and restricted[cite: 194, 201].
-* [cite_start]**Data Persistence:** Storing data in a MySQL database [cite: 137] [cite_start]using defined tables (`logid`, `office`, and `performance`)[cite: 230].
+The scope of this project is limited to a **database-driven console application** that performs core administrative functions. The system focuses on:
+**User Authentication:** Ensuring system access is secured and restricted.
+**Data Persistence:** Storing data in a MySQL database using defined tables (`logid`, `office`, and `performance`)
 * **Core CRUD Operations:** Handling the registration, retrieval, and updating of employee records.
 * **Basic Reporting:** Providing counts and formatted lists of current employees.
 
-[cite_start]The scope does **not** include a graphical user interface (GUI) or advanced features like password hashing [cite: 370] [cite_start]or search filtering[cite: 372].
+The scope does **not** include a graphical user interface (GUI) or advanced features like password hashing or search filtering.
 
 ---
 
@@ -24,14 +24,14 @@
 
 The primary target users for the Employee Management System are:
 
-* [cite_start]**System Administrators:** Individuals responsible for setting up user accounts and maintaining system security[cite: 200].
-* [cite_start]**HR/Management Staff:** Users who need to register new employees, update salaries, and retrieve employee performance and demographic data[cite: 186, 204].
+**System Administrators:** Individuals responsible for setting up user accounts and maintaining system security.
+**HR/Management Staff:** Users who need to register new employees, update salaries, and retrieve employee performance and demographic data.
 
 ---
 
 ## High-level Features
 
-[cite_start]The system's features are designed around the central program execution loop defined in the workflow[cite: 231].
+The system's features are designed around the central program execution loop defined in the workflow.
 
-* [cite_start]**Secure Access:** Mandatory user **Login** and **Registration**[cite: 232, 234].
-* [cite_start]**Record Management:** Functions for **Employee Registeration** (Create) and **Employee Details** viewing (Read)[cite: 234, 235]].
+**Secure system:** Mandatory user **Login** and **Registration**.
+**Record Management:** Functions for **Employee Registeration** (Create) and **Employee Details** viewing (Read).
